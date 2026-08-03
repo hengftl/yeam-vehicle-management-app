@@ -15,24 +15,22 @@ export const auth = betterAuth({
     autoSignIn: true,
   },
   trustedOrigins: [
+    ...(process.env.NODE_ENV === "development" ? ["http://localhost", "http://127.0.0.1"] : []),
     ...(process.env.V0_RUNTIME_URL ? [process.env.V0_RUNTIME_URL] : []),
     ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
     ...(process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? [`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`]
       : []),
   ],
+  advanced: {
+    disableOriginCheck: process.env.NODE_ENV === "development",
+    defaultCookieAttributes: {
+      sameSite: "none" as const,
+      secure: true,
+    },
+  },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day
   },
-  ...(process.env.NODE_ENV === "development"
-    ? {
-        advanced: {
-          defaultCookieAttributes: {
-            sameSite: "none" as const,
-            secure: true,
-          },
-        },
-      }
-    : {}),
 })
