@@ -40,18 +40,35 @@ export async function extractVehicleFromImage(imageDataUrl: string): Promise<Ext
   await getUserId()
 
   const { experimental_output } = await generateText({
-    model: "openai/gpt-5.4-mini",
+    model: "openai/gpt-4-turbo",
+    system: `You are a vehicle identification expert for a security gate system. Your PRIMARY task is to accurately read and extract the license plate number from the vehicle photo.
+
+CRITICAL INSTRUCTIONS FOR LICENSE PLATE:
+- Focus intensely on reading the license plate. This is the most important data.
+- Read EVERY character on the plate, including letters, numbers, and dots/periods.
+- Common Thai plate formats: XX.YYYY or similar (e.g., "กก.1234" or "TK.1168")
+- If you see Thai script or mixed script, read exactly what you see.
+- Include any dots, spaces, or separators exactly as shown.
+- If the plate is partially obscured, read only what is clearly visible.
+- If you cannot read the plate at all, set plateNumber to null and confidence to "low".
+
+SECONDARY TASK - Vehicle Details:
+- Identify the make/brand (Toyota, Lexus, Honda, etc.)
+- Identify the model if visible
+- Describe the primary color
+- Classify the vehicle type
+- Write a brief, clear description suitable for a security guard.
+
+Return confidence as "high" (plate fully readable), "medium" (plate partially readable), or "low" (plate unclear/not visible).`,
     experimental_output: Output.object({ schema: ExtractionSchema }),
     messages: [
       {
-        role: "system",
-        content:
-          "You are a vehicle identification assistant for a security gate. Look at the photo and extract the license plate number and vehicle details. Read the plate carefully, character by character. Keep the description short and plain so it can be read aloud to a guard.",
-      },
-      {
         role: "user",
         content: [
-          { type: "text", text: "Identify this vehicle and read its license plate." },
+          { 
+            type: "text", 
+            text: "Please examine this vehicle photo carefully. Focus first on reading the license plate number exactly as shown. Then provide the vehicle details. The plate is the most critical information.",
+          },
           { type: "image", image: imageDataUrl },
         ],
       },
