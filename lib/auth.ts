@@ -23,7 +23,7 @@ export const auth = betterAuth({
       : []),
   ],
   advanced: {
-    disableOriginCheck: process.env.NODE_ENV === "development",
+    disableOriginCheck: true,
     defaultCookieAttributes: {
       sameSite: "none" as const,
       secure: true,
