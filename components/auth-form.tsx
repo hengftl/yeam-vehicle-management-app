@@ -48,9 +48,9 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
             <ShieldCheck className="h-9 w-9 text-primary-foreground" aria-hidden="true" />
           </div>
-          <h1 className="mt-4 text-2xl font-bold tracking-tight text-foreground text-balance">
-            Gate Guard
-          </h1>
+  <h1 className="mt-4 text-2xl font-bold tracking-tight text-foreground text-balance">
+    Yeam
+  </h1>
           <p className="text-sm text-muted-foreground mt-1">
             {isSignUp ? "Create your guard account" : "Sign in to start your shift"}
           </p>

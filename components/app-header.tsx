@@ -29,10 +29,10 @@ export function AppHeader({ guardName }: { guardName: string }) {
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
             <ShieldCheck className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
           </div>
-          <div className="leading-tight">
-            <p className="text-sm font-bold text-foreground">Gate Guard</p>
-            <p className="text-xs text-muted-foreground">{guardName}</p>
-          </div>
+  <div className="leading-tight">
+    <p className="text-sm font-bold text-foreground">Yeam</p>
+    <p className="text-xs text-muted-foreground">{guardName}</p>
+  </div>
         </div>
 
         <nav className="flex items-center gap-1">

@@ -8,7 +8,7 @@ import { AppHeader } from '@/components/app-header'
 import { RecordsView } from '@/components/records-view'
 
 export const metadata = {
-  title: 'Vehicle Records | Guard Log',
+  title: 'Records | Yeam',
   description: 'View and export all vehicle records',
 }
 

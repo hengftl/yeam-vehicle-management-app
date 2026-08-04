@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Vehicle Guard Log',
+  title: 'Yeam',
   description: 'AI-powered vehicle in/out management for security guards',
   generator: 'v0.app',
   icons: {
