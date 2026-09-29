@@ -42,10 +42,10 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
   }
 
   return (
-    <main className="min-h-svh bg-background flex items-center justify-center px-4 py-10">
-      <Card className="w-full max-w-md p-8">
+    <main className="flex min-h-svh items-center justify-center bg-[radial-gradient(circle_at_20%_20%,_#fde68a_0,_transparent_25%),radial-gradient(circle_at_85%_15%,_#bfdbfe_0,_transparent_25%),linear-gradient(135deg,_#fff7ed_0%,_#f0fdf4_100%)] px-4 py-10">
+      <Card className="w-full max-w-md rounded-[2rem] border-2 border-dashed border-violet-200 bg-white/90 p-6 shadow-[0_7px_0_#ddd6fe] sm:p-8">
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
+          <div className="flex h-16 w-16 rotate-[-6deg] items-center justify-center rounded-3xl bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-[0_4px_0_#c4b5fd]">
             <ShieldCheck className="h-9 w-9 text-primary-foreground" aria-hidden="true" />
           </div>
   <h1 className="mt-4 text-2xl font-bold tracking-tight text-foreground text-balance">

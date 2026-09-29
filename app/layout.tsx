@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="min-h-screen bg-[radial-gradient(circle_at_15%_10%,_#fde68a_0,_transparent_24%),radial-gradient(circle_at_90%_20%,_#bfdbfe_0,_transparent_22%),linear-gradient(135deg,_#fff7ed_0%,_#f0fdf4_100%)] font-sans text-foreground antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -23,10 +23,10 @@ export function AppHeader({ guardName }: { guardName: string }) {
   ]
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-card/95 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-4 border-dashed border-violet-200 bg-white/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-sm">
+          <div className="flex h-11 w-11 rotate-[-6deg] items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-[0_4px_0_#c4b5fd]">
             <ShieldCheck className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="leading-tight">
@@ -54,7 +54,7 @@ export function AppHeader({ guardName }: { guardName: string }) {
               href={item.href}
               className={cn(
                 "flex min-h-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-semibold transition-colors",
-                active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary",
+                active ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white shadow-[0_3px_0_#c4b5fd]" : "text-slate-600 hover:bg-yellow-100",
               )}
             >
               <item.icon className="h-5 w-5" aria-hidden="true" />
