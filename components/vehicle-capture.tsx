@@ -145,7 +145,7 @@ export function VehicleCapture({ onSaved }: { onSaved?: () => void }) {
   // ---------- IDLE ----------
   if (phase === "idle") {
     return (
-      <Card className="p-6">
+      <Card className="rounded-2xl p-3 shadow-sm sm:p-6">
         <input
           ref={fileInputRef}
           type="file"

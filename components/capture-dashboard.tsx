@@ -23,8 +23,8 @@ export function CaptureDashboard() {
   }, [refresh])
 
   return (
-    <div className="flex flex-col gap-6">
-      <Card className="flex items-center justify-between gap-4 bg-primary p-5 text-primary-foreground">
+    <div className="flex flex-col gap-4 pb-4">
+      <Card className="flex items-center justify-between gap-4 rounded-2xl bg-primary p-4 text-primary-foreground shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-foreground/15">
             <CarFront className="h-6 w-6" aria-hidden="true" />
