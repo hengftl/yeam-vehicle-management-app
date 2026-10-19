@@ -23,48 +23,46 @@ export function AppHeader({ guardName }: { guardName: string }) {
   ]
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-card">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+    <header className="sticky top-0 z-20 border-b-4 border-dashed border-violet-200 bg-white/85 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-11 w-11 rotate-[-6deg] items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-[0_4px_0_#c4b5fd]">
             <ShieldCheck className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="leading-tight">
-            <p className="text-sm font-bold text-foreground">Gate Guard</p>
-            <p className="text-xs text-muted-foreground">{guardName}</p>
+            <p className="text-base font-bold tracking-tight text-foreground">Yeam</p>
+            <p className="max-w-28 truncate text-xs text-muted-foreground">{guardName}</p>
           </div>
         </div>
 
-        <nav className="flex items-center gap-1">
-          {navItems.map((item) => {
-            const active = pathname === item.href
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-secondary",
-                )}
-              >
-                <item.icon className="h-4 w-4" aria-hidden="true" />
-                <span className="hidden sm:inline">{item.label}</span>
-              </Link>
-            )
-          })}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleSignOut}
-            aria-label="Sign out"
-            className="text-muted-foreground"
-          >
-            <LogOut className="h-5 w-5" aria-hidden="true" />
-          </Button>
-        </nav>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleSignOut}
+          aria-label="Sign out"
+          className="h-11 w-11 rounded-xl text-muted-foreground"
+        >
+          <LogOut className="h-5 w-5" aria-hidden="true" />
+        </Button>
       </div>
+      <nav className="mx-auto grid max-w-3xl grid-cols-2 gap-1 border-t border-border px-3 py-2 sm:flex sm:justify-end sm:border-0 sm:px-4 sm:py-0 sm:pb-2">
+        {navItems.map((item) => {
+          const active = pathname === item.href
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "flex min-h-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-semibold transition-colors",
+                active ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white shadow-[0_3px_0_#c4b5fd]" : "text-slate-600 hover:bg-yellow-100",
+              )}
+            >
+              <item.icon className="h-5 w-5" aria-hidden="true" />
+              <span>{item.label}</span>
+            </Link>
+          )
+        })}
+      </nav>
     </header>
   )
 }

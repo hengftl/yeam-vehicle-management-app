@@ -23,8 +23,8 @@ export function CaptureDashboard() {
   }, [refresh])
 
   return (
-    <div className="flex flex-col gap-6">
-      <Card className="flex items-center justify-between gap-4 bg-primary p-5 text-primary-foreground">
+    <div className="flex flex-col gap-4 pb-4">
+      <Card className="flex items-center justify-between gap-4 rounded-3xl border-0 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-400 p-4 text-white shadow-[0_5px_0_#c4b5fd]">
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-foreground/15">
             <CarFront className="h-6 w-6" aria-hidden="true" />
@@ -41,7 +41,7 @@ export function CaptureDashboard() {
       <section>
         <div className="mb-2 flex items-center gap-2">
           <History className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          <h2 className="text-lg font-semibold text-foreground">Recent activity</h2>
+          <h2 className="text-lg font-bold text-slate-800">Recent activity</h2>
         </div>
         <RecordList records={recent} />
       </section>

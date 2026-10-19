@@ -52,6 +52,31 @@ export function VehicleCapture({ onSaved }: { onSaved?: () => void }) {
     return parts.join(" ")
   }, [])
 
+  const createPlateDetailCrop = (dataUrl: string) =>
+    new Promise<string>((resolve, reject) => {
+      const source = new window.Image()
+      source.onload = () => {
+        const width = source.naturalWidth
+        const height = source.naturalHeight
+        const cropWidth = Math.round(width * 0.72)
+        const cropHeight = Math.round(height * 0.58)
+        const cropX = Math.round((width - cropWidth) / 2)
+        const cropY = Math.round(height * 0.28)
+        const canvas = document.createElement("canvas")
+        canvas.width = 1800
+        canvas.height = Math.max(900, Math.round((cropHeight / cropWidth) * 1800))
+        const context = canvas.getContext("2d")
+        if (!context) return reject(new Error("Could not prepare image"))
+        context.imageSmoothingEnabled = true
+        context.imageSmoothingQuality = "high"
+        context.drawImage(source, cropX, cropY, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height)
+        resolve(canvas.toDataURL("image/jpeg", 0.95))
+      }
+      source.onerror = () => reject(new Error("Could not read image"))
+      source.crossOrigin = "anonymous"
+      source.src = dataUrl
+    })
+
   const handleFile = async (file: File) => {
     setError(null)
     const reader = new FileReader()
@@ -60,7 +85,8 @@ export function VehicleCapture({ onSaved }: { onSaved?: () => void }) {
       setImage(dataUrl)
       setPhase("analyzing")
       try {
-        const extraction = await extractVehicleFromImage(dataUrl)
+        const detail = await createPlateDetailCrop(dataUrl)
+        const extraction = await extractVehicleFromImage({ full: dataUrl, detail })
         setResult(extraction)
         let isOut = false
         if (extraction.plateNumber) {
@@ -119,7 +145,7 @@ export function VehicleCapture({ onSaved }: { onSaved?: () => void }) {
   // ---------- IDLE ----------
   if (phase === "idle") {
     return (
-      <Card className="p-6">
+      <Card className="rounded-3xl border-2 border-dashed border-violet-200 bg-white/90 p-3 shadow-[0_5px_0_#ddd6fe] sm:p-6">
         <input
           ref={fileInputRef}
           type="file"
